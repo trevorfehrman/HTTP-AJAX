@@ -24,12 +24,17 @@ class App extends Component {
 		});
 	}
 
+	addFriend = data => {
+		axios
+			.post(`${url}`, data)
+			.then( response => this.setState({ friendsArray: response.data }));
+	};
+
 	render() {
 		return (
 			<div className="App">
 				<FriendList friends={this.state.friendsArray} />
-        <FriendsForm />
-        
+				<FriendsForm onAddFriend={ this.addFriend }/>
 			</div>
 		);
 	}
