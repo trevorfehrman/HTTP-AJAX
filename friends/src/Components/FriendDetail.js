@@ -11,7 +11,13 @@ class FriendDetail extends React.Component {
 			showForm: !showForm
 		}));
 	render() {
-		const { friend, onUpdate } = this.props;
+		const { friend, onUpdate, onDelete} = this.props;
+		const decoratedOnSubmit = data => {
+			onUpdate(data);
+			this.setState({
+				showForm: false
+			});
+		};
 		return (
 			<div>
 				<div>
@@ -20,8 +26,9 @@ class FriendDetail extends React.Component {
 					<div>{friend.email}</div>
 				</div>
 				<button onClick={this.toggleForm}>Update Button</button>
+				<button onClick={ onDelete }>Murder Friend </button>
 				{this.state.showForm ? (
-					<FriendsForm onSubmit={onUpdate} title={"Update Info"} />
+					<FriendsForm onSubmit={ decoratedOnSubmit } title={"Update Info"} />
 				) : null}
 			</div>
 		);

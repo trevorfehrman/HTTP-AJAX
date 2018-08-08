@@ -37,6 +37,12 @@ class App extends Component {
     .then(response => this.setState({ friendsArray: response.data }));
   }
 
+  deleteFriend = id => {
+    axios
+    .delete(`${url}/${id}`)
+    .then(response => this.setState({ friendsArray: response.data }));
+  }
+
 	render() {
 		return (
 			<div className="App">
@@ -46,7 +52,7 @@ class App extends Component {
 					exact
 					path="/friends"
 					render={() => (
-						<FriendList onUpdate={ this.updateFriend }friends={ this.state.friendsArray } />
+						<FriendList onDelete={ this.deleteFriend } onUpdate={ this.updateFriend }friends={ this.state.friendsArray } />
 					)}
 				/>
 				<Route
