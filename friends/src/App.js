@@ -4,6 +4,7 @@ import axios from "axios";
 import styled from "styled-components";
 import FriendList from "./Components/FriendList";
 import FriendsForm from "./Components/FriendsForm";
+import { NavLink, Route } from "react-router-dom";
 
 let url = "http://localhost:5000/friends";
 
@@ -27,14 +28,26 @@ class App extends Component {
 	addFriend = data => {
 		axios
 			.post(`${url}`, data)
-			.then( response => this.setState({ friendsArray: response.data }));
+			.then(response => this.setState({ friendsArray: response.data }));
 	};
 
 	render() {
 		return (
 			<div className="App">
-				<FriendList friends={this.state.friendsArray} />
-				<FriendsForm onAddFriend={ this.addFriend }/>
+				<NavLink to="/friends">Friends</NavLink>
+				<NavLink to="/add">Add Friend</NavLink>
+				<Route
+					exact
+					path="/friends"
+					render={() => (
+						<FriendList friends={this.state.friendsArray} />
+					)}
+				/>
+				<Route
+					exact
+					path="/add"
+					render={ props => <FriendsForm { ...props } onAddFriend={ this.addFriend } /> }
+				/>
 			</div>
 		);
 	}

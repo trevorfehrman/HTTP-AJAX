@@ -19,7 +19,8 @@ class FriendsForm extends React.Component {
             onSubmit={ e => {
                 e.preventDefault();
                 this.props.onAddFriend( this.state );
-                this.setState({name: '', age: '', email: ''})
+                this.props.history.push('/friends');
+                this.setState({name: '', age: '', email: ''});
             }}>
 				<h3>Make a new friend, friendo!</h3>
 				<div>
