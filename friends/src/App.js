@@ -29,7 +29,13 @@ class App extends Component {
 		axios
 			.post(`${url}`, data)
 			.then(response => this.setState({ friendsArray: response.data }));
-	};
+  };
+  
+  updateFriend = (id, data) => {
+    axios
+    .put(`${url}/${id}`, data)
+    .then(response => this.setState({ friendsArray: response.data }));
+  }
 
 	render() {
 		return (
@@ -40,13 +46,13 @@ class App extends Component {
 					exact
 					path="/friends"
 					render={() => (
-						<FriendList friends={this.state.friendsArray} />
+						<FriendList onUpdate={ this.updateFriend }friends={ this.state.friendsArray } />
 					)}
 				/>
 				<Route
 					exact
 					path="/add"
-					render={ props => <FriendsForm { ...props } onAddFriend={ this.addFriend } /> }
+					render={ props => <FriendsForm title={"Add New Friend, Friendo!"} { ...props } onSubmit={ this.addFriend } /> }
 				/>
 			</div>
 		);

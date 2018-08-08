@@ -18,11 +18,11 @@ class FriendsForm extends React.Component {
 			<form
             onSubmit={ e => {
                 e.preventDefault();
-                this.props.onAddFriend( this.state );
-                this.props.history.push('/friends');
+                this.props.onSubmit( this.state );
+                this.props.history && this.props.history.push('/friends');
                 this.setState({name: '', age: '', email: ''});
             }}>
-				<h3>Make a new friend, friendo!</h3>
+				<h3>{this.props.title}</h3>
 				<div>
 					<input onChange={this.handleChange} type="text" placeholder="Name" name="name" value={this.state.name} />
 				</div>

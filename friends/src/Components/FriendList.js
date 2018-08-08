@@ -1,14 +1,15 @@
 import React from "react";
+import FriendDetail from "./FriendDetail";
 
-function FriendList(props) {
+function FriendList({ friends, onUpdate }) {
 	return (
 		<div>
-			{props.friends.map(e => (
-				<div>
-					<h2>{e.name}</h2>
-					<div>{e.age}</div>
-					<div>{e.email}</div>
-				</div>
+			{friends.map(e => (
+				<FriendDetail
+					onUpdate={onUpdate.bind(null, e.id)}
+					key={e.id}
+					friend={e}
+				/>
 			))}
 		</div>
 	);
