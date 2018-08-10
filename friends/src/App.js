@@ -56,7 +56,7 @@ class App extends Component {
 							onUpdate={this.updateFriend}
 							friends={this.state.friendsArray}
 						/>
-					)}
+					)} 
 				/>
 				<Route
 					exact
