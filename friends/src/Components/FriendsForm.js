@@ -12,7 +12,7 @@ class FriendsForm extends React.Component {
 			[event.target.name]: event.target.value
 		});
 
-	addFriend = data => {};
+
 	render() {
 		return (
 			<form

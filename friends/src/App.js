@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
 import axios from "axios";
-import styled from "styled-components";
 import FriendList from "./Components/FriendList";
 import FriendsForm from "./Components/FriendsForm";
 import { NavLink, Route } from "react-router-dom";
@@ -29,19 +28,19 @@ class App extends Component {
 		axios
 			.post(`${url}`, data)
 			.then(response => this.setState({ friendsArray: response.data }));
-  };
-  
-  updateFriend = (id, data) => {
-    axios
-    .put(`${url}/${id}`, data)
-    .then(response => this.setState({ friendsArray: response.data }));
-  }
+	};
 
-  deleteFriend = id => {
-    axios
-    .delete(`${url}/${id}`)
-    .then(response => this.setState({ friendsArray: response.data }));
-  }
+	updateFriend = (id, data) => {
+		axios
+			.put(`${url}/${id}`, data)
+			.then(response => this.setState({ friendsArray: response.data }));
+	};
+
+	deleteFriend = id => {
+		axios
+			.delete(`${url}/${id}`)
+			.then(response => this.setState({ friendsArray: response.data }));
+	};
 
 	render() {
 		return (
@@ -52,13 +51,23 @@ class App extends Component {
 					exact
 					path="/friends"
 					render={() => (
-						<FriendList onDelete={ this.deleteFriend } onUpdate={ this.updateFriend }friends={ this.state.friendsArray } />
+						<FriendList
+							onDelete={this.deleteFriend}
+							onUpdate={this.updateFriend}
+							friends={this.state.friendsArray}
+						/>
 					)}
 				/>
 				<Route
 					exact
 					path="/add"
-					render={ props => <FriendsForm title={"Add New Friend, Friendo!"} { ...props } onSubmit={ this.addFriend } /> }
+					render={props => (
+						<FriendsForm
+							title={"Add New Friend, Friendo!"}
+							{...props}
+							onSubmit={this.addFriend}
+						/>
+					)}
 				/>
 			</div>
 		);
